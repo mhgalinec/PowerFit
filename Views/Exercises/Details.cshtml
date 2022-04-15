@@ -1,0 +1,45 @@
+﻿@model PowerFit.Models.ViewModels.ExerciseViewModel
+@{
+    ViewData["Title"] = "Detalji";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <div class="container-fluid index-container">
+        <!--<div class="container category-container">
+            <div class="row">
+                <partial name="_Category" model="Model.CategoryViewModel" />
+            </div>
+        </div>-->
+        <div class="container exercises-container">
+            <div class="row" style="text-align:center">
+                <h2>@Model.ExerciseName</h2>
+                <h2><em>@Model.EnglishExerciseName</em></h2>
+                <a href="/image/squatpng.png">
+                    <img style="object-fit: contain; max-width:100%; width:600px;" src="/image/squatpng.png" class="wp-post-image" alt="" loading="lazy" title="" data-caption="" data-src="/image/squatpng.png" data-large_image="/image/squatpng.png" data-large_image_width="602" data-large_image_height="649" srcset="/image/squatpng.png 600w, /image/squatpng.png 602w" sizes="(max-width: 600px) 100vw, 600px" />
+                </a>
+                <ul style="list-style-type: none;">
+                    
+                    <li>
+                        <h4>Primarni aktivni mišići</h4>
+                        @foreach (var p in Model.PrimaryTags)
+                        {
+                            <p>@p.TagName</p>
+                        }
+                    </li>
+                    <li>
+                        <h4>Sekundarni aktivni mišići</h4>
+                        @foreach (var s in Model.SecondaryTags)
+                        {
+                            <p>@s.TagName</p>
+                        }
+                    </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

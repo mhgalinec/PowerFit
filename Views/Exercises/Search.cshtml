@@ -1,0 +1,36 @@
+﻿@model PowerFit.Models.ViewModels.ExerciseCategoryViewModel
+
+@{
+    ViewData["Title"] = "Pretraga";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <div class="container-fluid index-container">
+        <div class="container category-container">
+            <div class="row">
+                <partial name="_Category" model="Model.CategoryViewModel" />
+            </div>
+        </div>
+        <div class="container exercises-container">
+            <div class="row">
+                <h4>Rezultati pretraživanja za: @ViewData["SearchParam"] @ViewData["SearchTerm"]</h4>
+                @foreach (var item in Model.Exercises)
+                {
+                    <div class="col-md-3" style="margin-bottom:30px; ">
+                        <a href="/Products/Details?id=@item.ExerciseId"><img style="width: 100%; height: 180px; object-fit: contain" src="/image/squatpng.png" class="aux-attachment aux-featured-image attachment-370x277.5 aux-attachment-id-265 " alt="/image/placeholder-image-300x225.png" srcset="/image/squatpng.png 150w,/image/squatpng.png 300w,/image/squatpng.png 370w,/image/squatpng.png 592w" data-ratio="1.33" data-original-w="602" sizes="(max-width:479px) 480px,(max-width:767px) 768px,(max-width:1023px) 1024px,370px" /></a>
+                        <div class="exercise-name" style="text-align:center">
+                            <a href="/Products/Details?id=@item.ExerciseId" class="title" style="text-decoration:none"><h5 class="heading">@item.ExerciseName<br /><em>@item.EnglishExerciseName</em></h5></a>
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
