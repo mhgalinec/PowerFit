@@ -12,10 +12,29 @@ namespace PowerFit.Repository
     public class ExerciseRepository : IExerciseRepository
     {
         private readonly PowerFitContext _context;
+        private readonly IImageRepository _img;
 
-        public ExerciseRepository(PowerFitContext context)
+        public ExerciseRepository(PowerFitContext context,IImageRepository img)
         {
             _context = context;
+            _img = img;
+        }
+
+        public Exercise CreateExercise(CreateExerciseViewModel model)
+        {
+            var image = _img.ImageToByteConverter(model.Image);
+            var exercise = new Exercise
+            {
+                ExerciseName = model.ExerciseName,
+                EnglishExerciseName = model.EnglishExerciseName,
+                Description = model.Description,
+                InsertDate = DateTime.Now,
+                UpdateDate = DateTime.Now,
+                IsDeleted = false,
+                Image = image
+            };
+
+            return exercise;
         }
 
         public async Task<ExerciseViewModel> GetExerciseDetailsAsync(int id)
@@ -51,7 +70,8 @@ namespace PowerFit.Repository
                                 EnglishExerciseName = e.EnglishExerciseName,
                                 Description = e.Description,
                                 PrimaryTags = primaryTags,
-                                SecondaryTags = secondaryTags
+                                SecondaryTags = secondaryTags,
+                                UpdateDate = e.UpdateDate
                             });
 
             return await exercise.FirstOrDefaultAsync();
@@ -66,7 +86,8 @@ namespace PowerFit.Repository
                                  ExerciseName = e.ExerciseName,
                                  EnglishExerciseName = e.EnglishExerciseName,
                                  Description = e.Description,
-                                 InsertDate = e.InsertDate
+                                 InsertDate = e.InsertDate,
+                                 UpdateDate = e.UpdateDate
                              });
 
             return await exercises.ToListAsync();
@@ -83,7 +104,8 @@ namespace PowerFit.Repository
                                  ExerciseId = e.ExerciseId,
                                  ExerciseName = e.ExerciseName,
                                  EnglishExerciseName = e.EnglishExerciseName,
-                                 Description = e.Description
+                                 Description = e.Description,
+                                 UpdateDate = e.UpdateDate
 
                              });
 
@@ -99,7 +121,8 @@ namespace PowerFit.Repository
                                 ExerciseId = e.ExerciseId,
                                 EnglishExerciseName = e.EnglishExerciseName,
                                 ExerciseName = e.ExerciseName,
-                                Description = e.Description
+                                Description = e.Description,
+                                UpdateDate = e.UpdateDate
                             });
             return await exercise.ToListAsync();
         }

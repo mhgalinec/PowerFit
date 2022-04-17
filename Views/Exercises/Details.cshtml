@@ -1,4 +1,6 @@
-﻿@model PowerFit.Models.ViewModels.ExerciseViewModel
+﻿@using PowerFit.Repository.Interface
+@inject IImageRepository ImageRepository
+@model PowerFit.Models.ViewModels.ExerciseViewModel
 @{
     ViewData["Title"] = "Detalji";
 }
@@ -18,27 +20,44 @@
             <div class="row" style="text-align:center">
                 <h2>@Model.ExerciseName</h2>
                 <h2><em>@Model.EnglishExerciseName</em></h2>
-                <a href="/image/squatpng.png">
-                    <img style="object-fit: contain; max-width:100%; width:600px;" src="/image/squatpng.png" class="wp-post-image" alt="" loading="lazy" title="" data-caption="" data-src="/image/squatpng.png" data-large_image="/image/squatpng.png" data-large_image_width="602" data-large_image_height="649" srcset="/image/squatpng.png 600w, /image/squatpng.png 602w" sizes="(max-width: 600px) 100vw, 600px" />
-                </a>
-                <ul style="list-style-type: none;">
-                    
-                    <li>
-                        <h4>Primarni aktivni mišići</h4>
-                        @foreach (var p in Model.PrimaryTags)
-                        {
-                            <p>@p.TagName</p>
-                        }
-                    </li>
-                    <li>
-                        <h4>Sekundarni aktivni mišići</h4>
-                        @foreach (var s in Model.SecondaryTags)
-                        {
-                            <p>@s.TagName</p>
-                        }
-                    </li>
+                <figure>
+                    @{
+                        string imagePath = "/image/exercise/" + (Model.ExerciseId) + "/" + ImageRepository.DateTimeFormatter(Model.UpdateDate) + "_details.png";
+                    }
+                    @if (ImageRepository.IfImageExistsDetails(Model.ExerciseId, Model.UpdateDate) && ImageRepository.IsExerciseUpdated(Model.ExerciseId, imagePath) > 0)
+                    {
+                        <a href="@imagePath">
+                            <img style="object-fit: contain; max-width:100%; width:600px;" src="@imagePath" class="image" alt="" loading="lazy" title="" data-caption="" data-src="@imagePath" data-large_image="@imagePath" data-large_image_width="602" data-large_image_height="649" srcset="@imagePath 600w, @imagePath 602w" sizes="(max-width: 600px) 100vw, 600px" />
+                        </a>
+                    }
+
+                    else
+                    {
+                        string imgPath = ImageRepository.IfImageDoesNotExistDetails(Model.ExerciseId);
+
+                        <a href="@imgPath">
+                            <img style="object-fit: contain; max-width:100%; width:600px;" src="@imgPath" class="image" alt="" loading="lazy" title="" data-caption="" data-src="@imgPath" data-large_image="@imgPath" data-large_image_width="602" data-large_image_height="649" srcset="@imgPath 600w, @imgPath 602w" sizes="(max-width: 600px) 100vw, 600px" />
+                        </a>
+                    }
+                </figure>
+                    <ul style="list-style-type: none;">
+
+                        <li>
+                            <h4>Primarni aktivni mišići</h4>
+                            @foreach (var p in Model.PrimaryTags)
+                            {
+                                <p>@p.TagName</p>
+                            }
+                        </li>
+                        <li>
+                            <h4>Sekundarni aktivni mišići</h4>
+                            @foreach (var s in Model.SecondaryTags)
+                            {
+                                <p>@s.TagName</p>
+                            }
+                        </li>
                     </ul>
-            </div>
+                </div>
         </div>
     </div>
 </body>

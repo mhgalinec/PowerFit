@@ -13,11 +13,13 @@ namespace PowerFit.Controllers
     {
         private readonly PowerFitContext _context;
         private readonly IExerciseRepository _exerciseRepository;
+        private readonly IImageRepository _img;
 
-        public ExercisesController(PowerFitContext context,IExerciseRepository exerciseRepository)
+        public ExercisesController(PowerFitContext context,IExerciseRepository exerciseRepository,IImageRepository img)
         {
             _context = context;
             _exerciseRepository = exerciseRepository;
+            _img = img;
         }
         public IActionResult Index()
         {
@@ -64,6 +66,58 @@ namespace PowerFit.Controllers
 
             var exercises = await _exerciseRepository.GetExerciseDetailsAsync(id);
             return View(exercises);
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            var primaryTags = _context.ExerciseTag.Select(p => new PrimaryTagViewModel { PrimaryTagId = p.ExerciseTagId, TagName = p.Name }).ToList();
+            ViewData["PrimaryTags"] = primaryTags;
+
+            var secondaryTags = _context.ExerciseTag.Select(p => new SecondaryTagViewModel { SecondaryTagId = p.ExerciseTagId, TagName = p.Name }).ToList();
+            ViewData["SecondaryTags"] = secondaryTags;
+
+            var categories = _context.SecondaryCategories.Select(c => new SecondaryCategory { SecondaryCategoryId = c.SecondaryCategoryId, Name = c.Name }).ToList();
+            ViewData["Categories"] = categories;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(CreateExerciseViewModel model)
+        {
+            var exercise = _exerciseRepository.CreateExercise(model);
+            try
+            {
+                _context.Exercises.Add(exercise);
+                _context.SaveChanges();
+
+                foreach(var t in model.PrimaryTags)
+                {
+                    var primaryTagsRelationship = new PrimaryExerciseTagRelationship { ExerciseId = exercise.ExerciseId, TagId = t };
+                    _context.PrimaryExerciseTagRelationship.Add(primaryTagsRelationship);
+                    
+                }
+                foreach (var t in model.SecondaryTags)
+                {
+                    var secondaryTagsRelationship = new SecondaryExerciseTagRelationship { ExerciseId = exercise.ExerciseId, TagId = t };
+                    _context.SecondaryExerciseTagRelationship.Add(secondaryTagsRelationship);
+
+                }
+                foreach(var c in model.Categories)
+                {
+                    var exerciseCategoryRelationship = new ExerciseCategoryRelationship { ExerciseId = exercise.ExerciseId, SecondaryCategoryId = c };
+                    _context.ExerciseCategoryRelationship.Add(exerciseCategoryRelationship);
+                }
+
+                _context.SaveChanges();
+
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

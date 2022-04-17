@@ -15,5 +15,6 @@ namespace PowerFit.Repository.Interface
         public Task<IEnumerable<SecondaryCategory>> GetSecondaryCategoriesAsync();
         public Task<IEnumerable<Exercise>> GetExercisesBySearchParameterAsync(string term);
         public Task<ExerciseViewModel> GetExerciseDetailsAsync(int id);
+        public Exercise CreateExercise(CreateExerciseViewModel model);
     }
 }
