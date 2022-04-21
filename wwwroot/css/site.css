@@ -92,6 +92,12 @@ body {
     }
 }
 
+.bootstrap-select > .dropdown-toggle.bs-placeholder {
+    background: #fff !important;
+    color: #000 !important;
+    border:#999;
+}
+
 #secondary-img{
     display:none;
 }
@@ -106,4 +112,5 @@ body {
 
 .add-exercise{
     width:50% !important;
+    margin-bottom:25px;
 }

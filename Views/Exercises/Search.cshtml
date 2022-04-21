@@ -5,20 +5,26 @@
     ViewData["Title"] = "Pretraga";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-<body>
     <div class="container-fluid index-container">
         <div class="container category-container">
             <div class="row">
                 <partial name="_Category" model="Model.CategoryViewModel" />
             </div>
+            <div class="row">
+                <partial name="_SearchFilter" model="Model.FilteredExerciseViewModel" />
+            </div>
         </div>
+        
         <div class="container exercises-container">
             <div class="row">
-                <h4>Rezultati pretraživanja za: @ViewData["SearchParam"] @ViewData["SearchTerm"]</h4>
+                <h4>
+                    Rezultati pretraživanja za: @ViewData["SearchParam"] @ViewData["SearchTerm"]
+                    @if (ViewData["FilterTerms"] != null)
+                    {
+                        @ViewData["FilterTerms"]
+                        <text>&nbsp;</text>
+                    }
+                </h4>
                 @foreach (var item in Model.Exercises)
                 {
                     
@@ -47,5 +53,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+

@@ -1,0 +1,68 @@
+﻿
+@model PowerFit.Models.ViewModels.FilteredExerciseViewModel
+<div class="accordion" id="filter" style="margin-top:30px; margin-bottom:40px;">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Napredno pretraživanje
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <form action="/Exercises/FilteredSearch" method="get">
+
+                    <div class="form-group">
+                        <label>Naziv vježbe</label>
+                        <input type="text" class="form-control" name="name" id="name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Engleski naziv vježbe</label>
+                        <input type="text" class="form-control" name="englishName" id="englishName" />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="@Model.SecondaryCategories">Kategorija</label>
+                        <select asp-for="@Model.SecondaryCategories" id="categoryid" name="categoryid" class="form-control" title="Odaberi">
+
+                            @foreach (var t in Model.SecondaryCategories)
+                            {
+                                <option value="@t.SecondaryCategoryId">@t.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Types">Tip vježbe</label>
+                        <select asp-for="@Model.Types" id="typeid" name="typeid" class="form-control" title="Odaberi">
+
+                            @foreach (var t in Model.Types)
+                            {
+                                <option value="@t.TypeId">@t.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.PrimaryTags">Primarni aktivirani mišić</label>
+                        <select asp-for="@Model.PrimaryTags" id="primaryid" name="primaryid" class="form-control" title="Odaberi">
+
+                            @foreach (var p in Model.PrimaryTags)
+                            {
+                                <option value="@p.PrimaryTagId">@p.TagName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.SecondaryTags">Sekundarni aktivirani mišić</label>
+                        <select asp-for="@Model.SecondaryTags" id="secondaryid" name="secondaryid" class="form-control" title="Odaberi">
+
+                            @foreach (var p in Model.SecondaryTags)
+                            {
+                                <option value="@p.SecondaryTagId">@p.TagName</option>
+                            }
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Pretraži</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

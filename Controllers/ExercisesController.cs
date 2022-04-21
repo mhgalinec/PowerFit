@@ -14,20 +14,47 @@ namespace PowerFit.Controllers
         private readonly PowerFitContext _context;
         private readonly IExerciseRepository _exerciseRepository;
         private readonly IImageRepository _img;
+        private readonly IFilterRepository _filterRepository;
 
-        public ExercisesController(PowerFitContext context,IExerciseRepository exerciseRepository,IImageRepository img)
+        public ExercisesController(PowerFitContext context,IExerciseRepository exerciseRepository,IImageRepository img, IFilterRepository filterRepository)
         {
             _context = context;
             _exerciseRepository = exerciseRepository;
             _img = img;
+            _filterRepository = filterRepository;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var types = _filterRepository.GetTypesAsync();
+            var categories = _filterRepository.GetSecondaryCategoriesAsync();
+            var primarytags = _filterRepository.GetPrimaryTagsAsync();
+            var secondaryTags = _filterRepository.GetSecondaryTagsAsync();
+
+            var vm = new FilteredExerciseViewModel
+            {
+                Types = await types,
+                SecondaryCategories = await categories,
+                PrimaryTags = await primarytags,
+                SecondaryTags = await secondaryTags
+            };
+            return View(vm);
         }
 
         public async Task<IActionResult> Search(int id,string term)
         {
+            var types = await _filterRepository.GetTypesAsync();
+            var categories = await _filterRepository.GetSecondaryCategoriesAsync();
+            var primarytags = await _filterRepository.GetPrimaryTagsAsync();
+            var secondaryTags = await _filterRepository.GetSecondaryTagsAsync();
+
+            var filterViewModel = new FilteredExerciseViewModel
+            {
+                Types = types,
+                SecondaryCategories = categories,
+                PrimaryTags = primarytags,
+                SecondaryTags = secondaryTags
+            };
+
             ViewData["SearchParam"] = _context.SecondaryCategories.Where(s => s.SecondaryCategoryId == id).Select(s => s.Name).SingleOrDefault();
             ViewData["SearchTerm"] = term;
             var primaryCategories = await _exerciseRepository.GetPrimaryCategoriesAsync();
@@ -36,9 +63,9 @@ namespace PowerFit.Controllers
             if(id != 0)
             {
                 exercises = await _exerciseRepository.GetExercisesByCategoryIdAsync(id);
-            } 
+            }
 
-            var vm = new CategoryViewModel
+            var categoryViewModel = new CategoryViewModel
             {
                 PrimaryCategories = primaryCategories,
                 SecondaryCategories = secondaryCategories
@@ -47,10 +74,66 @@ namespace PowerFit.Controllers
             var viewmodel = new ExerciseCategoryViewModel
             {
                 Exercises = exercises.Distinct(),
-                CategoryViewModel = vm
+                CategoryViewModel = categoryViewModel,
+                FilteredExerciseViewModel = filterViewModel
 
             };
             return View(viewmodel);
+        }
+
+        [HttpGet]
+        [ActionName("FilteredSearch")]
+        public async Task<IActionResult> Search(string name, string englishName, int categoryid, int typeid, int primaryid, int secondaryid)
+        {
+            var categoryTerm = _context.SecondaryCategories.Where(c => c.SecondaryCategoryId == categoryid).Select(c => c.Name).FirstOrDefault();
+            var typeTerm = _context.Types.Where(t => t.TypeId == typeid).Select(t => t.Name).FirstOrDefault();
+            var primarytagTerm = _context.ExerciseTag.Where(t => t.ExerciseTagId == primaryid).Select(t => t.Name).FirstOrDefault();
+            var secondarytagTerm = _context.ExerciseTag.Where(t => t.ExerciseTagId == secondaryid).Select(t => t.Name).FirstOrDefault();
+
+
+            string[] searchTerms = { name, englishName, categoryTerm, typeTerm, primarytagTerm, secondarytagTerm};
+            var str = String.Join(",", searchTerms.Where(s => !string.IsNullOrEmpty(s)));
+
+            if (string.IsNullOrEmpty(name) && string.IsNullOrEmpty(englishName))
+            {
+                ViewData["FilterTerms"] = "svi proizvodi";
+            }
+
+            ViewData["FilterTerms"] = str.ToLower();
+
+            var types = await _filterRepository.GetTypesAsync();
+            var categories = await _filterRepository.GetSecondaryCategoriesAsync();
+            var primarytags = await _filterRepository.GetPrimaryTagsAsync();
+            var secondaryTags = await _filterRepository.GetSecondaryTagsAsync();
+
+            var filterViewModel = new FilteredExerciseViewModel
+            {
+                Types = types,
+                SecondaryCategories = categories,
+                PrimaryTags = primarytags,
+                SecondaryTags = secondaryTags
+            };
+
+
+            var primaryCategories = await _exerciseRepository.GetPrimaryCategoriesAsync();
+            var secondaryCategories = await _exerciseRepository.GetSecondaryCategoriesAsync();
+
+            var categoryViewModel = new CategoryViewModel
+            {
+                PrimaryCategories = primaryCategories,
+                SecondaryCategories = secondaryCategories
+            };
+
+            var exercises = await _filterRepository.GetFilteredExercisesAsync(name, englishName, categoryid, typeid, primaryid, secondaryid);
+
+            var viewmodel = new ExerciseCategoryViewModel
+            {
+                Exercises = exercises,
+                CategoryViewModel = categoryViewModel,
+                FilteredExerciseViewModel = filterViewModel
+
+            };
+            return View("Search",viewmodel);
         }
 
         public async Task<IActionResult> Details(int id)
@@ -119,5 +202,6 @@ namespace PowerFit.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
     }
 }

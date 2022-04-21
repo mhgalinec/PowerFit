@@ -38,6 +38,9 @@ namespace PowerFit.Migrations
                     b.Property<string>("ExerciseName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ExerciseTypeId")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
 
@@ -52,6 +55,8 @@ namespace PowerFit.Migrations
 
                     b.HasKey("ExerciseId");
 
+                    b.HasIndex("ExerciseTypeId");
+
                     b.ToTable("Exercises");
 
                     b.HasData(
@@ -61,7 +66,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Back squat",
                             ExerciseName = "Stražnji čučanj",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 709, DateTimeKind.Local).AddTicks(5518),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 185, DateTimeKind.Local).AddTicks(8570),
                             IsDeleted = false
                         },
                         new
@@ -70,7 +76,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Front squat",
                             ExerciseName = "Prednji čučanj",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3831),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1679),
                             IsDeleted = false
                         },
                         new
@@ -79,7 +86,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Lunge",
                             ExerciseName = "Iskorak",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3884),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1737),
                             IsDeleted = false
                         },
                         new
@@ -88,7 +96,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Pullup",
                             ExerciseName = "Zgib",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3891),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1744),
                             IsDeleted = false
                         },
                         new
@@ -97,7 +106,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Barbell row",
                             ExerciseName = "Veslanje u natklonu",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3895),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1750),
                             IsDeleted = false
                         },
                         new
@@ -106,7 +116,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Dumbbell row",
                             ExerciseName = "Veslanje sa bučicom",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3899),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1753),
                             IsDeleted = false
                         },
                         new
@@ -115,7 +126,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Conventional deadlift",
                             ExerciseName = "Konvencionalno mrtvo dizanje",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3905),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1757),
                             IsDeleted = false
                         },
                         new
@@ -124,7 +136,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Sumo deadlift",
                             ExerciseName = "Sumo mrtvo dizanje",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3909),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1762),
                             IsDeleted = false
                         },
                         new
@@ -133,7 +146,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Romanian deadlift",
                             ExerciseName = "Rumunjsko mrtvo dizanje",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3913),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1831),
                             IsDeleted = false
                         },
                         new
@@ -142,7 +156,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Overhead triceps extension",
                             ExerciseName = "Triceps ekstenzija iznad glave",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3917),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1835),
                             IsDeleted = false
                         },
                         new
@@ -151,7 +166,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Skullcrusher",
                             ExerciseName = "Potisak s čela na ravnoj klupi",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3922),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1840),
                             IsDeleted = false
                         },
                         new
@@ -160,7 +176,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Dips",
                             ExerciseName = "Paralelno prodapadnje",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3929),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1843),
                             IsDeleted = false
                         },
                         new
@@ -169,7 +186,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Barbell curl",
                             ExerciseName = "Stojeći pregib sa šipkom",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3933),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1847),
                             IsDeleted = false
                         },
                         new
@@ -178,7 +196,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Dumbbell curl",
                             ExerciseName = "Pregib s bučicama",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3937),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1851),
                             IsDeleted = false
                         },
                         new
@@ -187,7 +206,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Hammer curl",
                             ExerciseName = "Pregib bučicama sa neutralnim hvatom",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3940),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1855),
                             IsDeleted = false
                         },
                         new
@@ -196,7 +216,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Upright row",
                             ExerciseName = "Okomito veslanje",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3944),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1859),
                             IsDeleted = false
                         },
                         new
@@ -205,7 +226,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Overhead press",
                             ExerciseName = "Potisak iznad glave",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3948),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1863),
                             IsDeleted = false
                         },
                         new
@@ -214,7 +236,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Behind the neck press",
                             ExerciseName = "Potisak iza glave",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3952),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1867),
                             IsDeleted = false
                         },
                         new
@@ -223,7 +246,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Lateral raise",
                             ExerciseName = "Lateralno podizanje",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3956),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1874),
                             IsDeleted = false
                         },
                         new
@@ -232,7 +256,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Flat bench press",
                             ExerciseName = "Potisak sa ravne klupe",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(3959),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1878),
                             IsDeleted = false
                         },
                         new
@@ -241,7 +266,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Incline bench press",
                             ExerciseName = "Potisak sa kose klupe",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4024),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1882),
                             IsDeleted = false
                         },
                         new
@@ -250,7 +276,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Flat dumbbell flys",
                             ExerciseName = "Razvlačenje bučicama na ravnoj klupi",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4028),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1886),
                             IsDeleted = false
                         },
                         new
@@ -259,7 +286,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Plank",
                             ExerciseName = "Plank",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4031),
+                            ExerciseTypeId = 3,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1889),
                             IsDeleted = false
                         },
                         new
@@ -268,7 +296,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Side plank",
                             ExerciseName = "Bočni plank",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4036),
+                            ExerciseTypeId = 3,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1894),
                             IsDeleted = false
                         },
                         new
@@ -277,7 +306,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "V-situps",
                             ExerciseName = "V-podizanja",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4040),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1897),
                             IsDeleted = false
                         },
                         new
@@ -286,7 +316,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Neck curl",
                             ExerciseName = "Fleksija vrata",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4043),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1901),
                             IsDeleted = false
                         },
                         new
@@ -295,7 +326,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Neck extension",
                             ExerciseName = "Ekstenzija vrata",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4047),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1905),
                             IsDeleted = false
                         },
                         new
@@ -304,7 +336,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Wrist curl",
                             ExerciseName = "Pregib zapešća",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4051),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1939),
                             IsDeleted = false
                         },
                         new
@@ -313,7 +346,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Reverse wrist curl",
                             ExerciseName = "Obrnuti pregib zapešća",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4055),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1943),
                             IsDeleted = false
                         },
                         new
@@ -322,7 +356,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Pronation",
                             ExerciseName = "Pronacija zapešća",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4059),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1947),
                             IsDeleted = false
                         },
                         new
@@ -331,7 +366,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Supination",
                             ExerciseName = "Supinacija zapešća",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4063),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1950),
                             IsDeleted = false
                         },
                         new
@@ -340,7 +376,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Standing calf raise",
                             ExerciseName = "Stojeće podizanje listova",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4067),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1954),
                             IsDeleted = false
                         },
                         new
@@ -349,7 +386,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Seated calf raise",
                             ExerciseName = "Sjedeće podizanje listova",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4071),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1958),
                             IsDeleted = false
                         },
                         new
@@ -358,7 +396,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Leg press calf raise",
                             ExerciseName = "Podizanje listova na nožnoj preši",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4075),
+                            ExerciseTypeId = 2,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1963),
                             IsDeleted = false
                         },
                         new
@@ -367,7 +406,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Farmers walk",
                             ExerciseName = "Farmerov hod",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4079),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1967),
                             IsDeleted = false
                         },
                         new
@@ -376,7 +416,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Log clean and press",
                             ExerciseName = "Log nabačaj i potisak",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4083),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1971),
                             IsDeleted = false
                         },
                         new
@@ -385,7 +426,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Yoke walk",
                             ExerciseName = "Yoke hod",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4086),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1975),
                             IsDeleted = false
                         },
                         new
@@ -394,7 +436,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Clean and press",
                             ExerciseName = "Nabačaj i potisak",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4090),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1978),
                             IsDeleted = false
                         },
                         new
@@ -403,7 +446,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Clean and jerk",
                             ExerciseName = "Nabačaj i izbačaj",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4094),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1982),
                             IsDeleted = false
                         },
                         new
@@ -412,7 +456,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Tabata",
                             ExerciseName = "Tabata",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4130),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1986),
                             IsDeleted = false
                         },
                         new
@@ -421,7 +466,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Rowing machine",
                             ExerciseName = "Sprava za veslanje",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4135),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1990),
                             IsDeleted = false
                         },
                         new
@@ -430,7 +476,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Stationary bike",
                             ExerciseName = "Stacionaran bicikl",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4138),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1994),
                             IsDeleted = false
                         },
                         new
@@ -439,7 +486,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Running",
                             ExerciseName = "Trčanje",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4143),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(1997),
                             IsDeleted = false
                         },
                         new
@@ -448,7 +496,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Eliptical trainer",
                             ExerciseName = "Eliptični trenažer",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4146),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(2002),
                             IsDeleted = false
                         },
                         new
@@ -457,7 +506,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Snatch",
                             ExerciseName = "Trzaj",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4150),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(2005),
                             IsDeleted = false
                         },
                         new
@@ -466,7 +516,8 @@ namespace PowerFit.Migrations
                             Description = "",
                             EnglishExerciseName = "Z press",
                             ExerciseName = "Z potisak",
-                            InsertDate = new DateTime(2022, 4, 14, 9, 54, 42, 719, DateTimeKind.Local).AddTicks(4153),
+                            ExerciseTypeId = 1,
+                            InsertDate = new DateTime(2022, 4, 20, 10, 45, 5, 196, DateTimeKind.Local).AddTicks(2009),
                             IsDeleted = false
                         });
                 });
@@ -555,319 +606,319 @@ namespace PowerFit.Migrations
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 13,
+                            ExerciseCategoryRelationshipId = 12,
                             ExerciseId = 5,
                             SecondaryCategoryId = 4
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 15,
+                            ExerciseCategoryRelationshipId = 13,
                             ExerciseId = 6,
                             SecondaryCategoryId = 4
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 21,
+                            ExerciseCategoryRelationshipId = 14,
                             ExerciseId = 7,
                             SecondaryCategoryId = 13
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 26,
+                            ExerciseCategoryRelationshipId = 15,
                             ExerciseId = 8,
                             SecondaryCategoryId = 13
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 31,
+                            ExerciseCategoryRelationshipId = 16,
                             ExerciseId = 9,
                             SecondaryCategoryId = 13
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 32,
+                            ExerciseCategoryRelationshipId = 17,
                             ExerciseId = 10,
                             SecondaryCategoryId = 7
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 33,
+                            ExerciseCategoryRelationshipId = 18,
                             ExerciseId = 11,
                             SecondaryCategoryId = 7
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 34,
+                            ExerciseCategoryRelationshipId = 19,
                             ExerciseId = 12,
                             SecondaryCategoryId = 7
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 35,
+                            ExerciseCategoryRelationshipId = 20,
                             ExerciseId = 12,
                             SecondaryCategoryId = 2
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 36,
+                            ExerciseCategoryRelationshipId = 21,
                             ExerciseId = 12,
                             SecondaryCategoryId = 3
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 37,
+                            ExerciseCategoryRelationshipId = 22,
                             ExerciseId = 13,
                             SecondaryCategoryId = 6
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 38,
+                            ExerciseCategoryRelationshipId = 23,
                             ExerciseId = 14,
                             SecondaryCategoryId = 6
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 39,
+                            ExerciseCategoryRelationshipId = 24,
                             ExerciseId = 15,
                             SecondaryCategoryId = 6
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 40,
+                            ExerciseCategoryRelationshipId = 25,
                             ExerciseId = 15,
                             SecondaryCategoryId = 8
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 41,
+                            ExerciseCategoryRelationshipId = 26,
                             ExerciseId = 16,
                             SecondaryCategoryId = 2
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 42,
+                            ExerciseCategoryRelationshipId = 27,
                             ExerciseId = 16,
                             SecondaryCategoryId = 4
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 43,
+                            ExerciseCategoryRelationshipId = 28,
                             ExerciseId = 19,
                             SecondaryCategoryId = 2
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 44,
+                            ExerciseCategoryRelationshipId = 29,
                             ExerciseId = 17,
                             SecondaryCategoryId = 2
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 45,
+                            ExerciseCategoryRelationshipId = 30,
                             ExerciseId = 17,
                             SecondaryCategoryId = 7
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 46,
+                            ExerciseCategoryRelationshipId = 31,
                             ExerciseId = 18,
                             SecondaryCategoryId = 2
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 47,
+                            ExerciseCategoryRelationshipId = 32,
                             ExerciseId = 18,
                             SecondaryCategoryId = 7
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 48,
+                            ExerciseCategoryRelationshipId = 33,
                             ExerciseId = 20,
                             SecondaryCategoryId = 2
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 49,
+                            ExerciseCategoryRelationshipId = 34,
                             ExerciseId = 20,
                             SecondaryCategoryId = 3
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 50,
+                            ExerciseCategoryRelationshipId = 35,
                             ExerciseId = 20,
                             SecondaryCategoryId = 7
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 51,
+                            ExerciseCategoryRelationshipId = 36,
                             ExerciseId = 21,
                             SecondaryCategoryId = 2
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 52,
+                            ExerciseCategoryRelationshipId = 37,
                             ExerciseId = 21,
                             SecondaryCategoryId = 3
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 53,
+                            ExerciseCategoryRelationshipId = 38,
                             ExerciseId = 21,
                             SecondaryCategoryId = 7
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 54,
+                            ExerciseCategoryRelationshipId = 39,
                             ExerciseId = 22,
                             SecondaryCategoryId = 3
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 55,
+                            ExerciseCategoryRelationshipId = 40,
                             ExerciseId = 23,
                             SecondaryCategoryId = 5
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 56,
+                            ExerciseCategoryRelationshipId = 41,
                             ExerciseId = 24,
                             SecondaryCategoryId = 5
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 57,
+                            ExerciseCategoryRelationshipId = 42,
                             ExerciseId = 25,
                             SecondaryCategoryId = 5
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 58,
+                            ExerciseCategoryRelationshipId = 43,
                             ExerciseId = 30,
                             SecondaryCategoryId = 1
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 59,
+                            ExerciseCategoryRelationshipId = 44,
                             ExerciseId = 31,
                             SecondaryCategoryId = 1
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 60,
+                            ExerciseCategoryRelationshipId = 45,
                             ExerciseId = 32,
                             SecondaryCategoryId = 8
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 61,
+                            ExerciseCategoryRelationshipId = 46,
                             ExerciseId = 33,
                             SecondaryCategoryId = 8
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 62,
+                            ExerciseCategoryRelationshipId = 47,
                             ExerciseId = 34,
                             SecondaryCategoryId = 8
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 63,
+                            ExerciseCategoryRelationshipId = 48,
                             ExerciseId = 35,
                             SecondaryCategoryId = 8
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 64,
+                            ExerciseCategoryRelationshipId = 49,
                             ExerciseId = 36,
                             SecondaryCategoryId = 12
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 65,
+                            ExerciseCategoryRelationshipId = 50,
                             ExerciseId = 37,
                             SecondaryCategoryId = 12
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 66,
+                            ExerciseCategoryRelationshipId = 51,
                             ExerciseId = 38,
                             SecondaryCategoryId = 12
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 72,
+                            ExerciseCategoryRelationshipId = 52,
                             ExerciseId = 39,
                             SecondaryCategoryId = 13
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 79,
+                            ExerciseCategoryRelationshipId = 53,
                             ExerciseId = 40,
                             SecondaryCategoryId = 13
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 84,
+                            ExerciseCategoryRelationshipId = 54,
                             ExerciseId = 41,
                             SecondaryCategoryId = 13
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 93,
+                            ExerciseCategoryRelationshipId = 55,
                             ExerciseId = 42,
                             SecondaryCategoryId = 13
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 100,
+                            ExerciseCategoryRelationshipId = 56,
                             ExerciseId = 43,
                             SecondaryCategoryId = 13
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 101,
+                            ExerciseCategoryRelationshipId = 57,
                             ExerciseId = 44,
                             SecondaryCategoryId = 14
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 102,
+                            ExerciseCategoryRelationshipId = 58,
                             ExerciseId = 45,
                             SecondaryCategoryId = 14
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 103,
+                            ExerciseCategoryRelationshipId = 59,
                             ExerciseId = 46,
                             SecondaryCategoryId = 14
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 104,
+                            ExerciseCategoryRelationshipId = 60,
                             ExerciseId = 47,
                             SecondaryCategoryId = 14
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 105,
+                            ExerciseCategoryRelationshipId = 61,
                             ExerciseId = 48,
                             SecondaryCategoryId = 14
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 112,
+                            ExerciseCategoryRelationshipId = 62,
                             ExerciseId = 49,
                             SecondaryCategoryId = 13
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 113,
+                            ExerciseCategoryRelationshipId = 63,
                             ExerciseId = 50,
                             SecondaryCategoryId = 2
                         },
                         new
                         {
-                            ExerciseCategoryRelationshipId = 115,
+                            ExerciseCategoryRelationshipId = 64,
                             ExerciseId = 50,
                             SecondaryCategoryId = 7
                         });
@@ -1861,6 +1912,44 @@ namespace PowerFit.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PowerFit.Models.Type", b =>
+                {
+                    b.Property<int>("TypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TypeId");
+
+                    b.ToTable("Types");
+
+                    b.HasData(
+                        new
+                        {
+                            TypeId = 1,
+                            Description = "Vježbe kod kojih se koristi više skupina mišića.",
+                            Name = "Kompaktna vježba"
+                        },
+                        new
+                        {
+                            TypeId = 2,
+                            Description = "Vježbe gdje se primarno koristi jedan mišić.",
+                            Name = "Izolacijska vježba"
+                        },
+                        new
+                        {
+                            TypeId = 3,
+                            Description = "Vježbe gdje nema pokreta u zglobovima i gdje se mišić drži u istom položaju.",
+                            Name = "Statička vježba"
+                        });
+                });
+
             modelBuilder.Entity("PowerFit.Models.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -1913,6 +2002,17 @@ namespace PowerFit.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("PowerFit.Models.Exercise", b =>
+                {
+                    b.HasOne("PowerFit.Models.Type", "ExerciseType")
+                        .WithMany("Exercises")
+                        .HasForeignKey("ExerciseTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ExerciseType");
                 });
 
             modelBuilder.Entity("PowerFit.Models.ExerciseCategoryRelationship", b =>
@@ -2024,6 +2124,11 @@ namespace PowerFit.Migrations
             modelBuilder.Entity("PowerFit.Models.SecondaryCategory", b =>
                 {
                     b.Navigation("ExerciseCategoryRelationship");
+                });
+
+            modelBuilder.Entity("PowerFit.Models.Type", b =>
+                {
+                    b.Navigation("Exercises");
                 });
 #pragma warning restore 612, 618
         }

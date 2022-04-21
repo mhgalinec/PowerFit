@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PowerFit.Migrations;
 using PowerFit.Models;
 using PowerFit.Models.ViewModels;
 using PowerFit.Repository.Interface;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -17,20 +15,37 @@ namespace PowerFit.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly PowerFitContext _context;
         private readonly IExerciseRepository _exerciseRepository;
-
-        public HomeController(ILogger<HomeController> logger, PowerFitContext context,IExerciseRepository exerciseRepository)
+        private readonly IFilterRepository _filterRepository;
+        public HomeController(ILogger<HomeController> logger, PowerFitContext context,IExerciseRepository exerciseRepository, IFilterRepository filterRepository)
         {
             _logger = logger;
             _context = context;
             _exerciseRepository = exerciseRepository;
+            _filterRepository = filterRepository;
         }
 
         public async Task<IActionResult> Index()
         {
+
+            /*Get all the necessary data for the advanced filter form*/
+            var types = await _filterRepository.GetTypesAsync();
+            var categories = await _filterRepository.GetSecondaryCategoriesAsync();
+            var primarytags = await _filterRepository.GetPrimaryTagsAsync();
+            var secondaryTags = await _filterRepository.GetSecondaryTagsAsync();
+
+            var filterViewModel = new FilteredExerciseViewModel
+            {
+                Types = types,
+                SecondaryCategories =  categories,
+                PrimaryTags =  primarytags,
+                SecondaryTags =  secondaryTags
+            };
+            /**/
+
             var primaryCategories = await _exerciseRepository.GetPrimaryCategoriesAsync();
             var secondaryCategories = await _exerciseRepository.GetSecondaryCategoriesAsync();
             var exercises = await _exerciseRepository.GetExercisesAsync();
-            var vm = new CategoryViewModel
+            var categoryViewModel = new CategoryViewModel
             {
                 PrimaryCategories = primaryCategories,
                 SecondaryCategories = secondaryCategories
@@ -39,7 +54,8 @@ namespace PowerFit.Controllers
             var viewmodel = new ExerciseCategoryViewModel
             {
                 Exercises = exercises.Distinct(),
-                CategoryViewModel = vm
+                CategoryViewModel = categoryViewModel,
+                FilteredExerciseViewModel = filterViewModel
 
             };
             return View(viewmodel);

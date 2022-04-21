@@ -12,7 +12,7 @@
             </h2>
             <div id="@item.Name.ToLower().Replace(" ","")" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#category">
                 <div class="accordion-body">
-                    <div class="accordion" id="sub-accordionExample">
+                    <div class="accordion" id="sub-accordion">
                         @foreach (var c in Model.SecondaryCategories)
                         {
                             @if (item.PrimaryCategoryId == c.PrimaryCategoryId)

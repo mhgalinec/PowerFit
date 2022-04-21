@@ -4,15 +4,14 @@
 @using PowerFit.Repository.Interface
 @model PowerFit.Models.ViewModels.ExerciseCategoryViewModel
 @inject IImageRepository ImageRepository
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-<body>
+
     <div class="container-fluid index-container">
         <div class="container category-container">
             <div class="row">
                 <partial name="_Category" model="Model.CategoryViewModel" />
+            </div> 
+            <div class="row">
+                <partial name="_SearchFilter" model="Model.FilteredExerciseViewModel">
             </div>
         </div>
         <div class="container exercises-container">
@@ -26,8 +25,8 @@
                     <div class="col-md-3" style="margin-bottom:30px; ">
                         @if (ImageRepository.IfImageExists(item.ExerciseId, item.UpdateDate) && ImageRepository.IsExerciseUpdated(item.ExerciseId, imgPath) > 0)
                         {
-                            <a href="/Exercises/Details?id=@item.ExerciseId"><img style="width: 100%; height: 180px; object-fit: contain" src="@imgPath" class="aux-attachment aux-featured-image attachment-370x277.5 aux-attachment-id-265 " alt="/image/placeholder-image-300x225.png" srcset="@imgPath 150w,@imgPath 300w,@imgPath 370w,@imgPath 592w" data-ratio="1.33" data-original-w="602" sizes="(max-width:479px) 480px,(max-width:767px) 768px,(max-width:1023px) 1024px,370px" /></a>
-                            <div class="exercise-name" style="text-align:center">
+                            <a href="/Exercises/Details?id=@item.ExerciseId"><img style="width: 100%; height: 180px; object-fit: contain;" src="@imgPath" class="aux-attachment aux-featured-image attachment-370x277.5 aux-attachment-id-265 " alt="/image/placeholder-image-300x225.png" srcset="@imgPath 150w,@imgPath 300w,@imgPath 370w,@imgPath 592w" data-ratio="1.33" data-original-w="602" sizes="(max-width:479px) 480px,(max-width:767px) 768px,(max-width:1023px) 1024px,370px" /></a>
+                            <div class="exercise-name" style="text-align:center;">
                                 <a href="/Exercises/Details?id=@item.ExerciseId" class="title" style="text-decoration:none"><h5 class="heading">@item.ExerciseName<br /><em>@item.EnglishExerciseName</em></h5></a>
                             </div>
                         }
@@ -46,5 +45,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+

@@ -20,6 +20,7 @@ namespace PowerFit.Models
         public string EnglishExerciseName { get; set; }
         public byte[] Image { get; set; }
         public string Description { get; set; }
+        public int ExerciseTypeId { get; set; }
         public DateTime InsertDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public bool IsDeleted { get; set; }
@@ -30,5 +31,6 @@ namespace PowerFit.Models
         public virtual ICollection<SecondaryExerciseTagRelationship> SecondaryExerciseTagRelationship { get; set; }
         public virtual ICollection<PrimaryExerciseTagRelationship> PrimaryExerciseTagRelationship { get; set; }
         public virtual ICollection<FavoriteExercise> FavoriteExercise { get; set; }
+        public virtual Type ExerciseType { get; set; }
     }
 }

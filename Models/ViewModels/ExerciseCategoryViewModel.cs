@@ -9,5 +9,6 @@ namespace PowerFit.Models.ViewModels
     {
         public IEnumerable<Exercise> Exercises { get; set; }
         public CategoryViewModel CategoryViewModel { get; set; }
+        public FilteredExerciseViewModel FilteredExerciseViewModel { get; set; }
     }
 }

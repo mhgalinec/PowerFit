@@ -3,66 +3,78 @@
 }
 @using PowerFit.Models.ViewModels
 @model PowerFit.Models.ViewModels.CreateExerciseViewModel
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-<body>
-    <div class="container-fluid add-exercise">
-        <form action="/Exercises/Add" enctype="multipart/form-data" method="post">
-            @{
-                var primaryTags = ViewData["PrimaryTags"] as IEnumerable<PrimaryTagViewModel>;
-                var secondaryTags = ViewData["SecondaryTags"] as IEnumerable<SecondaryTagViewModel>;
-                var categories = ViewData["Categories"] as IEnumerable<SecondaryCategory>;
-            }
-            <div class="form-group">
-                <label asp-for="@Model.ExerciseName">Naziv vježbe</label>
-                <input asp-for="@Model.ExerciseName" type="text" class="form-control" name="exerciseName" id="exerciseName" />
+<div class="container-fluid add-exercise">
+    <form action="/Exercises/Add" enctype="multipart/form-data" method="post" class="needs-validation" novalidate>
+        @{
+            var primaryTags = ViewData["PrimaryTags"] as IEnumerable<PrimaryTagViewModel>;
+            var secondaryTags = ViewData["SecondaryTags"] as IEnumerable<SecondaryTagViewModel>;
+            var categories = ViewData["Categories"] as IEnumerable<SecondaryCategory>;
+        }
+        <div class="form-group">
+            <label asp-for="@Model.ExerciseName">Naziv vježbe</label>
+            <input asp-for="@Model.ExerciseName" type="text" class="form-control" name="exerciseName" id="exerciseName" required />
+            <div class="invalid-feedback">
+                Unesite hrvatsko ime za vježbu!
             </div>
-            <div class="form-group">
-                <label asp-for="@Model.EnglishExerciseName">Engleski naziv vježbe</label>
-                <input asp-for="@Model.EnglishExerciseName" type="text" class="form-control" name="englishExerciseName" id="englishExerciseName" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.EnglishExerciseName">Engleski naziv vježbe</label>
+            <input asp-for="@Model.EnglishExerciseName" type="text" class="form-control" name="englishExerciseName" id="englishExerciseName" required />
+            <div class="invalid-feedback">
+                Unesite englesko ime za vježbu!
             </div>
-            <div class="form-group">
-                <label asp-for="@Model.Image">Slika</label>
-                <input asp-for="@Model.Image" type="file" class="form-control" name="image" id="image" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Image">Slika</label>
+            <input asp-for="@Model.Image" type="file" class="form-control" name="image" id="image" required />
+            <div class="invalid-feedback">
+                Odaberite sliku!
             </div>
-            <div class="form-group">
-                <label asp-for="@Model.Description">Opis vježbe</label>
-                <textarea asp-for="@Model.Description" class="form-control" name="description" id="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Description">Opis vježbe</label>
+            <textarea asp-for="@Model.Description" class="form-control" name="description" id="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Categories">Kategorija</label>
+            <select asp-for="@Model.Categories" id="categories" name="categories" class="form-control" title="Odaberi" required>
+                
+                @foreach (var p in categories)
+                {
+                    <option value="@p.SecondaryCategoryId">@p.Name</option>
+                }
+            </select>
+            <div class="invalid-feedback">
+                Odaberite kategoriju/e!
             </div>
-            <div class="form-group">
-                <label asp-for="@Model.Categories">Kategorija</label>
-                <select asp-for="@Model.Categories" id="categories" name="categories" class="form-control">
-                    <option>Odaberi</option>
-                    @foreach (var p in categories)
-                    {
-                        <option value="@p.SecondaryCategoryId">@p.Name</option>
-                    }
-                </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.PrimaryTags">Primarni mišići</label>
+            <select asp-for="@Model.PrimaryTags" id="primaryTags" name="primaryTags" class="form-control tag" title="Odaberi" required>
+                @foreach (var p in primaryTags)
+                {
+                    <option value="@p.PrimaryTagId">@p.TagName</option>
+                }
+            </select>
+            <div class="invalid-feedback">
+                Odaberite primarne aktivne mišiće!
             </div>
-    <div class="form-group">
-        <label asp-for="@Model.PrimaryTags">Primarni mišići</label>
-        <select asp-for="@Model.PrimaryTags" id="primaryTags" name="primaryTags" class="form-control">
-            <option>Odaberi</option>
-            @foreach (var p in primaryTags)
-            {
-                <option value="@p.PrimaryTagId">@p.TagName</option>
-            }
-        </select>
-    </div>
-    <div class="form-group">
-        <label asp-for="@Model.SecondaryTags">Sekundarni mišići</label>
-        <select asp-for="@Model.SecondaryTags" id="secondaryTags" name="secondaryTags" class="form-control">
-            <option>Odaberi</option>
-            @foreach (var s in secondaryTags)
-            {
-                <option value="@s.SecondaryTagId">@s.TagName</option>
-            }
-        </select>
-    </div>
-    <button class="btn btn-primary" type="submit">Potvrdi</button>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.SecondaryTags">Sekundarni mišići</label>
+            <select asp-for="@Model.SecondaryTags" id="secondaryTags" name="secondaryTags" class="form-control tag" title="Odaberi">
+                @foreach (var s in secondaryTags)
+                {
+                    <option value="@s.SecondaryTagId">@s.TagName</option>
+                }
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Potvrdi</button>
     </form>
-    </div>
-</body>
-</html>
+</div>
+@section Scripts{
+    <script type="text/javascript" src="/js/formvalidation.js"></script>
+    <script type="text/javascript">
+        $('select').selectpicker();
+    </script>
+}

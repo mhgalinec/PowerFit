@@ -32,6 +32,7 @@ namespace PowerFit
             services.AddControllersWithViews();
             services.AddScoped<IExerciseRepository, ExerciseRepository>();
             services.AddScoped<IImageRepository, ImageRepository>();
+            services.AddScoped<IFilterRepository, FilterRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

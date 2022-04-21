@@ -4,12 +4,6 @@
 @{
     ViewData["Title"] = "Detalji";
 }
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-<body>
     <div class="container-fluid index-container">
         <!--<div class="container category-container">
             <div class="row">
@@ -40,25 +34,37 @@
                         </a>
                     }
                 </figure>
-                    <ul style="list-style-type: none;">
+                @if (Model.Description.Any())
+                {
+                    <div class="description">
+                        <h3>Opis vježbe</h3>
+                        <p>@Model.Description</p>
+                    </div>
+                }
 
-                        <li>
-                            <h4>Primarni aktivni mišići</h4>
-                            @foreach (var p in Model.PrimaryTags)
-                            {
-                                <p>@p.TagName</p>
-                            }
-                        </li>
+
+                <ul style="list-style-type: none;">
+
+                    <li>
+                        <h4>Primarni aktivni mišići</h4>
+                        @foreach (var p in Model.PrimaryTags)
+                        {
+                            <p>@p.TagName</p>
+                        }
+                    </li>
+                    @if (Model.SecondaryTags.Any())
+                    {
                         <li>
                             <h4>Sekundarni aktivni mišići</h4>
                             @foreach (var s in Model.SecondaryTags)
                             {
+
                                 <p>@s.TagName</p>
                             }
                         </li>
-                    </ul>
-                </div>
+                    }
+
+                </ul>
+            </div>
         </div>
     </div>
-</body>
-</html>
